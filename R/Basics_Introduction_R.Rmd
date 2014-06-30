@@ -1,5 +1,7 @@
-```{r, echo=FALSE}
-opts_chunk$set(results='hide')
+```{r opts_chunk, echo=FALSE}
+
+opts_chunk$set(results="hide")
+
 ```
 # Nottingham Bootcamp R materials - 
 --------------------------------------------------
