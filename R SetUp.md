@@ -12,7 +12,7 @@
 
 1. Do whatever is appropriate for your OS to launch RStudio. You should get a window similar to the screenshot you see [here] (http://www.rstudio.com/products/rstudio/), but yours will be more boring because you haven't written any code or made any figures yet!
 
-2. Put your cursor in the pane labelled Console, which is where you interact with the live R process. Create a simple object with code like `x <- 2 * 4` (followed by enter or return). Then inspect the `x` object by typing `x` followed by enter or return. Obviously you should see the value 8 print to screen. If yes, you are good to go.
+2. Put your cursor in the pane labelled Console, which is where you interact with the live R process. Create a simple object with code like `x <- 2 * 4` (followed by enter or return). Then inspect the `x` object by typing `x` followed by enter or return. Obviously you should see the value `8` print to screen. If yes, you are good to go.
 
 #### Add-on packages
 
