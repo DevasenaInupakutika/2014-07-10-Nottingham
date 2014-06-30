@@ -1,5 +1,6 @@
-```{r, echo=FALSE}
-opts_chunk$set(results='hide')
+```library(knitr)
+{r, echo=FALSE}
+knitr::opts_chunk$set(results='hide')
 ```
 # Nottingham Bootcamp R materials - 
 --------------------------------------------------

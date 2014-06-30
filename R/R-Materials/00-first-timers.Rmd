@@ -1,10 +1,7 @@
+```{r, echo=FALSE}
+opts_chunk$set(results='hide')
 ```
-library(knitr)
-{r, echo=FALSE}
-knitr::opts_chunk$set(results="hide")
-
-```
-# Nottingham Bootcamp R materials - 
+# Data Carpentry R materials - 
 --------------------------------------------------
 
 * Its really important that you know what you did. More journals/grants/etc. are also making it important for them to know what you did.
