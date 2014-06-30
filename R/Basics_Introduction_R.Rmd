@@ -1,5 +1,4 @@
-```
-library(knitr)
+```library(knitr)
 {r, echo=FALSE}
 knitr::opts_chunk$set(results="hide")
 
