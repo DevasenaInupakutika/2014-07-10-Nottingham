@@ -68,7 +68,7 @@ or by typing words, with the command `print`
 print("hello world")
 ```
 
-We can annotate our code (take notes) by typing "#". Everything to the right of # is ignored by R
+We can annotate our code (comment or take notes) by typing "#". Everything to the right of # is ignored by R
 
 Try it with and without the #
 
@@ -221,7 +221,7 @@ Question: Do you see a property that's common to all these vectors above?
 **Add elements**
 
 ```{r}
-z <- c(z, "Annette")
+z <- c(z, "Matt")
 z
 ```
 
@@ -255,19 +255,20 @@ seq(1, 10, by = 0.1)
 0/0
 ```
 
-Each object can have __attributes__. Attribues can be part of an object of R. These include:
+Each object can have __attributes__. Attributes can be part of an object of R. These include:
 
 * names
 * dimnames
 * dim
 * class
 * attributes (contain metadata)
+* comment
 
 You can also glean other attribute-like information such as length (works on vectors and lists) or number of characters (for character strings).
 
 ```{r}
 length(1:10)
-nchar("Software Carpentry")
+nchar("Nottingham Bootcamp")
 ```
 
 What happens when you mix types?
@@ -323,7 +324,12 @@ cbind(x, y)
 rbind(x, y)
 ```
 
-You can also use the byrow argument to specify how the matrix is filled. From R's own documentation:
+#### Note: 
+For `rbind`, number of columns of result is not a multiple of vector length.
+For `cbind`, number of rows of result is not a multiple of vector length.
+
+
+You can also use the `byrow` argument to specify how the matrix is filled. From R's own documentation:
 
 ```{r}
 mdat <- matrix(c(1,2,3, 11,12,13), nrow = 2, ncol = 3, byrow = TRUE,
@@ -353,7 +359,7 @@ length(x)
 2. How about `x[[1]]`?
 
 ```{r}
-xlist <- list(a = "Karthik Ram", b = 1:10, data = head(iris))
+xlist <- list(a = "Nottingham Bootcamp", b = 1:10, data = head(iris))
 xlist
 ```
 
@@ -399,7 +405,7 @@ If you need to convert a factor to a character vector, simply use
 as.character(x)
 ```
 
-In modeling functions, it is important to know what the baseline level is. This is the first factor but by default the ordering is determined by alphabetical order of words entered. You can change this by speciying the levels (another option is to use the function relevel).
+In modelling functions, it is important to know what the baseline level is. This is the first factor but by default the ordering is determined by alphabetical order of words entered. You can change this by specifying the levels (another option is to use the function level).
 
 ```{r}
 x <- factor(c("yes", "no", "yes"), levels = c("yes", "no"))
@@ -483,3 +489,4 @@ To install any new package `install.packages('ggplot2')`
 
 You can't ever learn all of R, but you can learn how to build a program and how to find help
 to do the things that you want to do. Let's get hands-on.
+	
