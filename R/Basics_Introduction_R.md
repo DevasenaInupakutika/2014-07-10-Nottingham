@@ -343,6 +343,23 @@ nickname       Frisbee Sailing
 
 ## Data types and structures
 
+|          | dimensions  | content types |
+|----------|-------------|---------------|
+| `vector` | 1: `length` | 1             |
+| `matrix` | 2: `dim`    | 1             |
+| `array`  | n: `dim`    | 1             |
+| `list`   | 1: `length` | `length()`    |
+| `data.frame` | 2: `dim`| `ncol()`      |
+
+Is the data a collection of scalars of same *type* (defined later)?
+ - yes:
+   - linear?
+     - yes `vector`
+	 - no `matrix` or `array` (if > 2 dimensions)
+ - no: `list`
+   - elements of same length (and generally `vectors`): `data.frame`
+
+
 __Understanding basic data types in R__
 
 To make the best of the R language, you'll need a strong understanding of the basic data types and data structures and how to operate on those.
