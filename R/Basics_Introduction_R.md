@@ -24,7 +24,7 @@ R is a versatile, open source programming/scripting language that's useful both 
 
 __Commenting__
 
-Use # signs to comment. Comment liberally in your R scripts. Anything to the right of a # is ignored by R.  
+Use `#` signs to comment. Comment liberally in your R scripts. Anything to the right of a # is ignored by R.  
 
 __Assignment operator__
 
@@ -297,10 +297,6 @@ To find out if a package has vignettes, use `vignette(package =
 "packagename")`. To load a specific vignette, use
 `vignette("vignettename", package = "packagename")` or
 `vignette("vignettename")`.
-
-## Comments
-
-Using the `#` character.
 
 ## Session information
 
