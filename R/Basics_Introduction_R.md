@@ -38,7 +38,7 @@ Use `old.packages()` to list all your locally installed packages that are now ou
 
 In RStudio, you can also do package management through Tools -> Install Packages.
 
-Updating packages can sometimes make changes, so if you already have a lot of code in R, don't run this now. Otherwise let's just go ahead and update our pacakges so things are up to date.
+Updating packages can sometimes make changes, so if you already have a lot of code in R, don't run this now. Otherwise let's just go ahead and update our packages so things are up to date.
 
 
 ```{r, eval=FALSE}
@@ -427,7 +427,7 @@ although the term "vector" most commonly refers to the atomic type not lists.
 
 A vector can be a vector of elements that are most commonly `character`, `logical`, `integer` or `numeric`.
 
-You can create an empty vector with `vector()` (By default the mode is `logical`. You can be more explicit as shown in the examples below.) It is more common to use direct constructors such as `character()`, `numeric()`, etc.
+You can create an empty vector with `vector()` (By default the mode is `logical`. You can be more explicit as shown in the examples below.) It is more common to use direct respective constructor functions to initialise R data structures such as  `vector()`, `matrix()`,`list()`, `character()`, `numeric()`, `data.frame()` etc.
 
 ```{r}
 x <- vector()
@@ -547,6 +547,139 @@ as.numeric()
 as.character()
 ```
 
+## Vectorised operations
+
+
+```r
+x <- c(1, 2, 3)
+y <- c(3, 2, 1)
+x + y
+```
+
+```
+## [1] 4 4 4
+```
+
+```r
+x^2
+```
+
+```
+## [1] 1 4 9
+```
+
+```r
+sqrt(x)
+```
+
+```
+## [1] 1.000 1.414 1.732
+```
+
+
+
+```r
+x <- c("a", "b", "c")
+paste(x, 1:3, sep = ".")
+```
+
+```
+## [1] "a.1" "b.2" "c.3"
+```
+
+
+### Recycling
+
+
+```r
+x <- c(1, 2, 3, 4)
+y <- c(1, 2)
+x + y
+```
+
+```
+## [1] 2 4 4 6
+```
+
+```r
+z <- c(1, 2, 3)
+x + z
+```
+
+```
+## Warning: longer object length is not a multiple of shorter object length
+```
+
+```
+## [1] 2 4 6 5
+```
+
+
+
+```r
+x <- c(1, 2, 3, 4)
+x[2:3] <- 10
+x
+```
+
+```
+## [1]  1 10 10  4
+```
+
+
+
+```r
+x <- c("a", "b", "c")
+paste(x, 1, sep = ".")
+```
+
+```
+## [1] "a.1" "b.1" "c.1"
+```
+
+
+## Generating vectors
+
+- `seq` and **argument matching by position and name**
+
+
+```r
+seq(1, 10, 2)
+seq(1, 3, length = 7)
+```
+
+
+- `:`
+
+
+```r
+1:10
+```
+
+
+- **Exercise**: Using `rep`, how to generate 
+  - 3 repetitions of 1 to 10: 1, 2, ..., 9, 10, 1, 2, ..., 9, 10, 1, 2, ..., 9, 10
+  - repeating numbers 1 to 10 each 3 times: 1, 1, 1, 2, 2, 2, ..., 9, 9, 9, 10, 10, 10
+
+- `rnorm`, `runif`, ... to draw values from specific distributions.
+
+
+```r
+summary(rnorm(100))
+runif(10)
+```
+
+
+- `sample` to create permutations of vectors. 
+
+
+```r
+sample(LETTERS[1:5])
+sample(LETTERS[1:5], 10, replace = TRUE)
+```
+
+
+
 ### Matrix
 
 Matrices are a special vector in R. They are not a separate type of object but simply an atomic vector with dimensions added on to it. Matrices have rows and columns.
@@ -595,6 +728,121 @@ mdat <- matrix(c(1,2,3, 11,12,13), nrow = 2, ncol = 3, byrow = TRUE,
 mdat
 ```
 
+OR
+
+
+```{r}
+m <- c(1, 2, 3, 4, 5, 6)
+dim(m) <- c(2, 3)  ## always rows first
+m
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6
+```
+
+```{r}
+class(m)  ## a matrix
+```
+
+```
+## [1] "matrix"
+```
+
+```{r}
+mode(m)  ## of numerics
+```
+
+```
+## [1] "numeric"
+```
+
+
+Or, using the appropriate constructor and defining the number of columns and/or of rows:
+
+
+```{r}
+m <- matrix(c(1, 2, 3, 4, 5, 6), ncol = 2)
+m <- matrix(c(1, 2, 3, 4, 5, 6), nrow = 3)
+m <- matrix(c(1, 2, 3, 4, 5, 6), ncol = 2, nrow = 3)
+```
+
+
+What happens if
+- the number elements does not match?
+- the number of cols/rows don't match the number of elements?
+
+Accessing/subsetting is the same as vectors, keeping in mind that we have 2 dimensions:
+
+
+```{r}
+m[1:2, 1:2]
+m[, 2:3]
+m[1, 1] <- 10
+m
+m[, -1]
+```
+
+
+Naming matrices' rows and columns
+
+
+```{r}
+colnames(m) <- letters[1:3]
+rownames(m) <- LETTERS[1:2]
+## or provideDimnames(m, base = list(letters, LETTERS))
+m
+m["A", "c"]
+```
+
+
+Dimensions can also have their own names:
+
+
+```{r}
+M <- matrix(c(4, 8, 5, 6, 4, 2, 1, 5, 7), nrow=3)
+dimnames(M) <- list(year =
+                    c(2005, 2006, 2007),
+                    "mode of transport" =
+                    c("plane", "bus", "boat"))
+```
+
+
+## Simplification/dropping of dimensions
+
+
+```{r}
+m[-1, ]  ## becomes a vector
+m[-1, , drop = FALSE]  ## remains a matrix
+m[, -(1:2)]  ## becomes a vector
+m[, -(1:2), drop = FALSE]  ## remains a matrix
+```
+
+In `R`, there is no such thing as a columns/row vector:
+
+
+```{r}
+x <- 1:6
+t(x)  ## becomes a matrix
+dim(t(x))
+dim(t(t(x)))
+```
+
+
+## Array
+
+Like a matrix with > 2 dimensions. 
+
+
+```{r}
+x <- 1:30
+dim(x) <- c(5, 3, 2)
+## or array(1:30, dim = c(5, 3, 2))
+x
+```
+
 ### List
 
 In R lists act as containers. Unlike atomic vectors, the contents of a list are not restricted to a single mode and can encompass any mixture of data types. Lists are sometimes called recursive vectors, because a list can contain other lists. This makes them fundamentally different from atomic vectors.
@@ -628,6 +876,46 @@ A list does not print to the console like a vector. Instead, each element of the
 
 Elements are indexed by double brackets. Single brackets will still return a(nother) list.
 
+### Difference between `[` and `[[`
+
+The former returns a sub-set of the list, the latter an individual elements
+
+
+```{r}
+class(xlist[2])
+class(xlist[[2]])
+```
+
+
+Hence
+
+
+```{r}
+class(xlist[2:3])
+class(xlist[[2:3]])
+```
+
+
+### Vector modes: numerics, character, logical, factor
+
+Vectors are of one unique type:
+
+          | mode | class  | typeof |
+----------|------|--------|--------| 
+character | character | character | character |
+logical   | logical | logical | logical |
+numeric   | numeric | integer or numeric | integer of double | 
+factor    | numeric | factor | integer | 
+
+
+
+```r
+typeof(c(1, 10, 1))
+typeof(c(1L, 10L, 1L))
+typeof(c(1L, 10, 1))
+typeof(letters)
+typeof(c(TRUE, FALSE))  ## TRUE and FALSE are reserved words
+```
 
 ### Factors
 
@@ -714,6 +1002,148 @@ class(iris)
 | 1-D | atomic vector | list |
 | 2_D | matrix | data frame |
 
+Later on we'll go over how we load our own data, but for now, let's use a built-in data frame called `mtcars`. This data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models). We can load this built-in data with `data(mtcars)`. By the way, running `data()` without any arguments will list all the available built-in datasets included with R.
+
+Let's load the data first. Type the name of the object itself (`mtcars`) to view the entire data frame. *Note: doing this with large data frames can cause you trouble.*
+
+
+```r
+data(mtcars)
+class(mtcars)
+mtcars
+```
+
+There are several built-in functions that are useful for working with data frames.
+* `head()` prints the first few lines of a large data frame.
+* `length()` tells you the number of features (variables, columns) in a data frame.
+* `dim()` returns a two-element vector containing the number of rows and the number of columns in a data frame.
+* `str()` displays the structure of a data frame, printing out details and a preview of every column.
+* `summary()` works differently depending on what kind of object you pass to it. Passing a data frame to the `summary()` function prints out some summary statistics about each column (min, max, median, mean, etc.)
+
+
+```r
+head(mtcars)
+length(mtcars)
+dim(mtcars)
+dim(mtcars)[1]  # number of rows (individual cars in the survey)
+dim(mtcars)[2]  # number of columns (number of variables measured)
+str(mtcars)
+```
+
+We can access individual variables within a data frame using the `$` operator, e.g., `mydataframe$specificVariable`. Let's print out the number of cylinders for every car, and calculate the average miles per gallon for ever car in the dataset (using the built-in `mean()` function).
+
+
+```r
+# display the number of cylinders for each car.
+mtcars$cyl
+# first display MPG for all vehicles, then calculate the average.
+mtcars$mpg
+mean(mtcars$mpg)
+```
+
+We can also access certain rows or columns of a dataset by providing multiple indices using the syntax `mydataframe[rows, columns]`. Let's get the first 4 rows and the first two rows (MPG and # cylinders) from the dataset:
+
+
+```r
+head(mtcars)
+mtcars[1:4, 1:2]
+```
+
+We can also use the `subset()` function to return a subset of the data frame that meets a specific condition. The first argument is the data frame you want to subset. The second argument is a condition you must satisfy. If you want to satisfy *all* of multiple conditions, you can use the "and" operator, `&`. The "or" operator `|` (the pipe character, usually shift-backslash) will return a subset that meet *any* of the conditions.
+
+The commands below will:
+
+0. Return only cars with 6 cylinder engines.
+0. Return only cars with greater than 6 cylinders.
+0. Return only the cars that get at least 20 miles per gallon or have a displacement volume of less than 100cc.
+0. Return cars with 6 cylinder engines, but using the `select=` argument, only the MPG and displacement columns. Note the syntax there -- we're passing a vector of variables created with the `c()` function to the `select=` argument, which only returns certain columns.
+0. Return cars that have greater than or equal to 6 cylinders *and* get at least 15 miles per gallon, but display only the MPG, cylinders, and qsec columns (qsec is the 1/4 mile time).
+
+Try some subsetting on your own.
+
+
+```r
+subset(mtcars, cyl == 6)
+subset(mtcars, cyl > 6)
+subset(mtcars, mpg >= 20 | disp < 100)
+subset(mtcars, cyl == 6, select = c(mpg, disp))
+subset(mtcars, cyl >= 6 & mpg >= 15, select = c(mpg, cyl, qsec))
+```
+
+The `with()` function is particularly helpful. Let's say you wanted to compute some (senseless) value by computing the MPG times the number of cylinders divided by the car's displacement. You could access the dataset's variables using the `$` notation, or you could use `with()` to temporarily *attach* the data frame, and call the variables directly. The first argument to `with()` is the name of the data frame, and the second argument is all the stuff you'd like to do with the particular features in that data frame.
+
+Try typing the following commands:
+
+
+```r
+# Display the number of cylinders.
+mtcars$cyl
+with(mtcars, cyl)
+
+# Compute the senseless value described above. Both return the same results.
+mtcars$mpg * mtcars$cyl/mtcars$disp
+with(mtcars, mpg * cyl/disp)
+```
+
+### Data Frames Example
+
+Generate a `data.frame` of patient data, including their first names,
+surnames, age, gender, weights and whether they give consent for their
+data to be made public.
+
+
+```{r}
+age <- c(50, 21, 35, 45, 28,
+         31, 42, 33, 57, 62)
+weight <- c(70.8, 67.9, 75.3, 61.9, 72.4,
+            69.9, 63.5, 71.5, 73.2, 64.8)
+firstName <- c("Adam", "Eve", "John", "Mary",
+               "Peter", "Paul", "Joanna", "Matthew",
+               "David", "Sally")
+secondName <- c("Jones", "Parker", "Evans",
+                "Davis", "Baker", "Daniels",
+                "Edwards", "Smith", "Roberts", "Wilson")
+consent <- c(TRUE, TRUE, FALSE, TRUE, FALSE,
+             FALSE, FALSE, TRUE, FALSE, TRUE)
+gender <- c("Male", "Female", "Male", "Female",
+            "Male", "Male", "Female", "Male",
+            "Male", "Female")
+patients <- data.frame(firstName, secondName,
+                       gender = factor(gender),
+                       age, weight, consent,
+                       stringsAsFactors=FALSE)
+rm(age, consent, firstName, gender, secondName, weight)
+```
+
+
+By default, `character`s are converted to `factor`s when generating
+`data.frame`s; use `stringsAsFactors = FALSE` to keep the `characters`
+as is and convert to `factor`s explicitly.
+
+Extract subsets of interest: patients that have given consent, male
+patients, males that have given consent, those that are below the
+average weight, order the `data.frame` by patient age, ...
+
+
+```{r}
+patients[patients$consent, ]
+patients[patients$gender == "Male", ]
+patients[patients$gender == "Male" & patients$consent, ]
+```
+
+
+
+```{r}
+avgw<- mean(patients$weight)
+patients[patients$weight < avgw, ]
+```
+
+
+
+```{r}
+patients[order(patients$age), ]
+```
+
 ### __Indexing__
 
 Vectors have positions, these positions are ordered and can be called using name_vector[index]
@@ -721,6 +1151,8 @@ Vectors have positions, these positions are ordered and can be called using name
 ```{r}
 letters[2]
 ```
+
+
 
 ### __Functions__
 
@@ -740,9 +1172,95 @@ All functions come with a help screen.
 It is critical that you learn to read the help screens since they provide important information on what the function does, 
 how it works, and usually sample examples at the very bottom.
 
-### __Install new functions__
+###  Environments
 
-To install any new package `install.packages('ggplot2')`
+An `environment` is and un-ordered collection of symbols, or
+associative arrays. They are implemented as hash tables.
+
+
+```{r}
+e <- new.env()
+e
+```
+
+```
+## <environment: 0x7fc42c53acd0>
+```
+
+```{r}
+e$a <- 1
+e$a
+```
+
+```
+## [1] 1
+```
+
+```{r}
+ls()  ## list content of global environment
+```
+
+```
+[1] "a"                "dat"              "e"                "f"               
+ [5] "hd"               "list1"            "list2"            "m"               
+ [9] "my_list"          "rownames_vector"  "star_wars_matrix" "w"               
+[13] "x"                "xlist"            "xx"               "y"               
+[17] "z"            
+```
+
+```{r}
+ls(e)  ## list content of e
+```
+
+```
+## [1] "a"
+```
+
+```{r}
+a <- 10  ## a different variable a
+e$a
+```
+
+```
+## [1] 1
+```
+
+```{r}
+e[["a"]]
+```
+
+```
+## [1] 1
+```
+
+
+Values from specific environments can also be retrieved with `get` or
+`mget` for multiple values or assigned with `assign`.
+
+Environments can also be locked with `lockEnvrionment`, to avoid
+assignment of new variables and update of existing variables can be
+locked with `lockBindings`. 
+
+
+```{r}
+lockEnvironment(e)
+e$b <- 10
+```
+
+```
+## Error: cannot add bindings to a locked environment
+```
+
+```{r}
+e$a <- 10
+lockBinding("a", e)
+e$a <- 100
+```
+
+```
+## Error: cannot change value of locked binding for 'a'
+```
+
 
 You can't ever learn all of R, but you can learn how to build a program and how to find help
 to do the things that you want to do. Let's get hands-on.
