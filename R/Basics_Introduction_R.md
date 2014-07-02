@@ -55,11 +55,24 @@ _Point out the different windows in R._
 * Code and workflow is more reproducible if we can document everything that we do.
 * Our end goal is not just to "do stuff" but to do it in a way that anyone can easily and exactly replicate our workflow and results.
 
+## Basic Operations
+
+R can be used as a glorified calculator. Try typing below commands directly into RStudio console. Then start typing this into the editor, and save your script. Use the run button, or press `CMD`+`Enter` (`Ctrl`+`Enter` on Windows).
+
 You can get output from R simply by typing in math
 	
 ```{r}
 3 + 5
 12/7
+2 + 2
+5 * 4
+2^3
+```
+
+R knows order of operations:
+
+```{r}
+2 + 3 * 4/(5 + 3) * 15/2^2 + 3 * 4^2
 ```
 
 or by typing words, with the command `print`
@@ -99,6 +112,237 @@ Now what is 'a' and 'hours'
 ```{r}
 a 
 hours 
+```
+## Functions
+
+R has built-in functions.
+
+```{r}
+# Notice that this is a comment.  Anything behind a # is 'commented out' and
+# is not run.
+
+sqrt(144)
+log(1000)
+sum(1, 2, 3)
+sqrt(2)
+x <- 2
+x^2
+
+```
+Get help by typing a question mark in front of the function's name, or `help(function_name)`:
+
+```{r}
+help(log)
+?log
+```
+Note syntax highlighting when typing this into the editor. Also note how we pass *arguments* to functions. Finally, see how you can *nest* one function inside of another (here taking the square root of the log-base-10 of 1000).
+
+```{r}
+log(1000)
+log(1000, base = 10)
+sqrt(log(1000, base = 10))
+
+```
+
+## Workspace
+
+All these variables live in your works the global environment. They can be listed with `ls()`. Variables can be deleted with `rm()`. `ls()` and `rm()` are functions that take an input (as in `rm(x)`; `ls()` is called without any explicit input values) and either return a value (`ls()` returns the names of all existing variables) or have side effects (`rm(x)` deletes the variable `x`).
+
+```{r}
+**environment()**
+```
+```{r}
+<environment: R_GlobalEnv>
+```
+
+```{r}
+ls()
+```
+```{r}
+ [1] "a"                "dat"              "f"                "hd"              
+ [5] "list1"            "list2"            "m"                "my_list"         
+ [9] "rain"             "rownames_vector"  "star_wars_matrix" "w"               
+[13] "x"                "xlist"            "xx"               "y"               
+[17] "z"          
+```
+
+```{r}
+> rm(rain)
+> ls()
+ [1] "a"                "dat"              "f"                "hd"              
+ [5] "list1"            "list2"            "m"                "my_list"         
+ [9] "rownames_vector"  "star_wars_matrix" "w"                "x"               
+[13] "xlist"            "xx"               "y"                "z"    
+
+```
+
+## Working directory
+
+`R` is running in a directory, called the working directory. That's
+where `R` expects to find and save files. The working directory can be
+queried with the `getwd()` function. It does not take any inputs
+(there is nothing inside the `()` and returns the name the current
+working directory).
+
+
+```{r}
+getwd()
+```
+
+
+The working directory can also be updated with
+`setwd("path/to/workingdir")`, where `"path/to/workingdir"` points to
+the new working directory. The working directory is typically your
+current project dorectory, where input data, source code, result
+files, figures, ... are stored.
+
+It is of course possible to access and store files in other
+directories by specifying the full path. 
+
+## Packages
+
+`R` comes with a *limited* functionality. Thousands of third-party
+**packages** can be downloaded from dedicated on-line repositories
+(like CRAN) and automatically installed with
+`install.packages("newpackage")`. Packages are installed in specific
+directories called **libraries** and can be loaded using
+`library("newpackage")`.
+
+
+```{r}
+install.packages("devtools")
+library("devtools")
+```
+
+
+It is of course possible to download and install packages using
+`install.packages(, repos = NULL)`. However, this will force you to
+handle all dependencies (and there can be many) manually too.
+
+
+It is also possible to install packages from
+[github](https://github.com/) using functionality from the package we
+have just installed. We first need to load the package with the
+`library` function to be able to use the functions that it
+provides.
+
+
+To see what packages are available, one can use `installed.packages()`.
+
+
+```{r}
+allpkgs <- installed.packages()
+nrow(allpkgs)
+```
+
+
+
+```{r}
+head(allpkgs)
+```
+
+
+## Help
+
+`R` comes with a extensive help system. Type `help.start()` to start
+the HTML version of `R`'s online documentation. Each function comes
+with its dedicated manual that can be accessed using `help("rm")` or
+`?rm.`. Reading the `rm` manual, we see that we can provide it with a
+`list` input, i.e. *a character vector naming objects to be
+removed*. Below, we generate this list of variable (object) names with
+`ls()` and pass it directly as input to `rm()` to get a clean
+workspace.
+
+
+```{r}
+ls()
+```
+
+```
+## [1] "a"                "dat"              "f"                "hd"              
+ [5] "list1"            "list2"            "m"                "my_list"         
+ [9] "rownames_vector"  "star_wars_matrix" "w"                "x"               
+[13] "xlist"            "xx"               "y"                "z"            
+```
+
+```{r}
+rm(list = ls())
+ls()
+```
+
+```
+## character(0)
+```
+
+
+To get all the details about a package and its documentation:
+
+
+```{r}
+packageDescription("devtools")
+help(package = "devtools")
+```
+
+
+Some packages provide an additional piece of documentation called a
+`vignette`. It is generally displayed as a `pdf` file or, more
+recently, as `html` pages. Vignettes are written as `LaTeX` (or
+`markdown`) documents with interleaved code chunks. These are
+evaluated and replaced by their output. These documents generally
+present a high-level overview of the package's functionality, as
+opposed to individual manual pages, that provide detailed information
+about a single object.
+
+To find out if a package has vignettes, use `vignette(package =
+"packagename")`. To load a specific vignette, use
+`vignette("vignettename", package = "packagename")` or
+`vignette("vignettename")`.
+
+## Comments
+
+Using the `#` character.
+
+## Session information
+
+
+```{r}
+sessionInfo()
+```
+```
+> sessionInfo()
+R version 3.0.2 (2013-09-25)
+Platform: x86_64-apple-darwin10.8.0 (64-bit)
+
+locale:
+[1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+loaded via a namespace (and not attached):
+[1] tools_3.0.2
+> 
+```
+
+```{r}
+version
+```
+```
+               _                           
+platform       x86_64-apple-darwin10.8.0   
+arch           x86_64                      
+os             darwin10.8.0                
+system         x86_64, darwin10.8.0        
+status                                     
+major          3                           
+minor          0.2                         
+year           2013                        
+month          09                          
+day            25                          
+svn rev        63987                       
+language       R                           
+version.string R version 3.0.2 (2013-09-25)
+nickname       Frisbee Sailing             
 ```
 
 ## Data types and structures
