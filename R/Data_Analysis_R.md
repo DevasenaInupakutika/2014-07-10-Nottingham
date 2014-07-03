@@ -510,7 +510,6 @@ __EXERCISES__
 sd_species <- aggregate(wgt~species, data=dat, sd)
 ```
 
-
 ## Plotting  
 
 The mathematician Richard Hamming once said, "The purpose of computing is insight, not numbers," and the best way to develop insight is often to visualize data. Visualization deserves an entire lecture (or course) of its own, but we can explore a few features of R's base `plotting` package and `ggplot2` here. 
@@ -522,7 +521,6 @@ R has built in plotting functions
 ```{r}
 barplot(mean_species$wgt, names.arg=mean_species$species)
 ```
-
 
 The axis labels are too big though, so you can't see them all. Let's change that
 ```{r}
@@ -572,7 +570,6 @@ layout(matrix(c(1,1,2,3), 2, 2, byrow = TRUE))
 hist(wt)
 hist(mpg)
 hist(disp)
-
 
 ```
 
@@ -647,7 +644,7 @@ boxplot(mean_species$wgt, names.arg=mean_species$species, cex.names=0.4, col=c("
 
 ![plot of chunk Data Analysis Box plot](figures/Rplot02.png)
 
-We can produce of matrix of scatter plots using `pairs()` function as below:
+We can produce a matrix of scatter plots using `pairs()` function as below:
 
 ```{r}
 pairs(dat[,c(2,5,6)])
