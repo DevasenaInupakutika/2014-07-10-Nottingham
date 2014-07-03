@@ -535,6 +535,13 @@ and change the color
 barplot(mean_species$wgt, names.arg=mean_species$species, cex.names=0.4, col=c("blue"))
 ```
 
+#### Combining Plots
+
+**R** makes it easy to combine multiple plots into overall one graph, using either the **par()** or
+**layout()** function.
+
+Here is the example graph using `par()` function:
+
 ```{r}
 par(mfrow = c(2,2))
 plot(dat$plot, dat[ ,"species"], type = "b", xlab = "Plot", ylab = "Species")
@@ -545,6 +552,35 @@ barplot(mean_species$wgt, names.arg=mean_species$species, cex.names=0.4)
 ```
 
 ![plot of chunk Data_Analysis_R plot](figures/Rplot.png)
+
+With the `par()` function, you can include the option `mfrow=c(nrows,ncols)` to create matrix of *nrows x ncols* 
+plots that are filled in by row.
+
+`mfcol=c(nrows, ncols)` fills in the matrix by columns as evident from above plot.
+
+#### Example using in-built `mtcars` data and `layout()` function
+
+The `layout()` function has the form `layout(mat)` where:
+
+*mat* is a matrix object specifying the location of the N figures to plot.
+
+``` {r}
+# One figure in row 1 and two figures in row 2
+
+attach(mtcars)      # attach() function in R used to make objects within dataframes accessible with fewer keystrokes (useful in case of variables with complex or long names) 
+layout(matrix(c(1,1,2,3), 2, 2, byrow = TRUE))
+hist(wt)
+hist(mpg)
+hist(disp)
+
+
+```
+
+![plot of chunk Data Analysis using R - layout Example](figures/Rplot01.png)
+
+We can generate finer or even more nicer plots by customizing parameters under `par()`, `plot()` or `layout()` functions.
+
+See **help(layout)** for more details.
 
 __EXERCISES__
 
@@ -590,6 +626,108 @@ dev.off()
 
 ## More Plotting
 
+```{r}
+#search() function can be used to list attached objects 
+```
+
+```
+[1] ".GlobalEnv"        "mtcars"           
+ [3] "tools:rstudio"     "package:stats"    
+ [5] "package:graphics"  "package:grDevices"
+ [7] "package:utils"     "package:datasets" 
+ [9] "package:methods"   "Autoloads"        
+[11] "package:base"     
+
+```
+
+```{r}
+boxplot(mean_species$wgt, names.arg=mean_species$species, cex.names=0.4, col=c("blue"))
+
+```
+
+![plot of chunk Data Analysis Box plot](figures/Rplot02.png)
+
+We can produce of matrix of scatter plots using `pairs()` function as below:
+
+```{r}
+pairs(dat[,c(2,5,6)])
+
+```
+
+![plot of chunk Data Analysis pairs plot](figures/Rplot03.png)
+
+
+## Writing text spreadsheets
+
+`write.table` and `writeLines` to write tables and lines to files.
+
+```{r}
+write.csv(mtcars, file="cars.csv")
+```
+
+You can check in your workspace for **cars.csv** file now.
+
+## Saving and loading R data
+
+Once data has been loaded an properly formatted into R, the easiest and fastest way to serialise it is with `save`. Once stored in binary format, the saved variable can be loaded in the working environment with `load`. This can be used for one, several or all objects in the workspace (see `save.image`).
+
+To save and restore single object to a file, see also `saveRDS` and `readRDS`.
+
+### Exercise
+
+Use one of the `save`/`load` or `saveRDS`/`readRDS` above to serialise the `mtcars` data.frame, rename the variable in your workspace, reload the saved object and compare it to the original file. Hint: use `identical` or `all.equal`.
+
+```{r}
+saveRDS(mtcars,"cars2.rds")
+cars2<-readRDS("cars2.rds")
+identical(mtcars,cars2)
+
+```
+
+```{r}
+[1] TRUE
+
+```
+
+### Bonus
+
+
+```r
+x <- sqrt(2)
+x^2 == 2
+```
+
+```
+## [1] FALSE
+```
+
+See [Why doesn’t R think these numbers are equal?](http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-doesn_0027t-R-think-these-numbers-are-equal_003f).
+
+
+```r
+all.equal(x^2, 2)
+```
+
+```
+## [1] TRUE
+```
+
+
+## See also
+- `scan`: Read data into a vector or list from the console or file.
+- User input: `menu`
+
+
+```r
+choices <- c("RStudio", "Wordpad", "emacs", "vim", "Notepad++")
+mychoice <- menu(choices, graphics = FALSE, title = "Best editor ever")
+cat("Best editor ever is ", choices[mychoice], "\n")
+```
+
+- Database: `RMySQL`, `RMongoDB`, `ROracle`
+- `rhdf5`, `ncdf`, `XML`, `RJSONIO`, `jsonlite`
+- web: `RCurl`, `httr`
+
 
 
 ## Key Points
@@ -606,5 +744,3 @@ dev.off()
 * Use # some kind of explanation to add comments to programs.
 * Use `mean()`, `max()`, `min()` and `sd()` to calculate simple statistics.
 * Update vectors using append
-* Write a simple for loop 
-* Use base R and the `ggplot2` library for creating simple visualizations.
