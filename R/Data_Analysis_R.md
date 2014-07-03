@@ -158,7 +158,6 @@ __BREAK__
 * How many rows and columns are there?
 * what kind of data is it?
 
-
 ## Manipulating Data
 
 Now that our data is in memory, we can start doing things with it. 
@@ -536,6 +535,16 @@ and change the color
 barplot(mean_species$wgt, names.arg=mean_species$species, cex.names=0.4, col=c("blue"))
 ```
 
+```{r}
+par(mfrow = c(2,2))
+plot(dat$plot, dat[ ,"species"], type = "b", xlab = "Plot", ylab = "Species")
+plot(mean_species$wgt, mean_species[ ,"species"], type = "b", xlab = "Mean", ylab = "Weight")
+barplot(mean_species$wgt, names.arg=mean_species$species)
+barplot(mean_species$wgt, names.arg=mean_species$species, cex.names=0.4)
+
+```
+
+![plot of chunk Data_Analysis_R plot](figures/Rplot.png)
 
 __EXERCISES__
 
@@ -578,6 +587,9 @@ pdf("R_plot.pdf")
 barplot(mean_species$wgt, names.arg=mean_species$species, cex.names=0.4, col=c("blue"))
 dev.off()
 ```
+
+## More Plotting
+
 
 
 ## Key Points
