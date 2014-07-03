@@ -2,20 +2,22 @@
 - A few prerequisites
 - Data structures: vectors, matrices, lists, data.frames, ...
 
-## 2. [R programming](Rprog.md)
+## 2. [Data Analysis using R](Data_Analysis_R.md)
 - Input/ouput
 - Basic plotting
+
+## 3. [R programming](Rprog.md)
 - Iterations and flow control
 - Writing functions
 - Exercise
 - Benchmarking
 
-## 3. [Visualisation](Rviz.md)
+## 4. [Visualisation](Rviz.md)
 - Base graphics
 - `ggplot2`
 - `lattice`
 
-## 4. Resources
+## 5. Resources
 
 ### Manuals
 - [R manuals](http://cran.r-project.org/manuals.html)
