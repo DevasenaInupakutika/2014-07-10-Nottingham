@@ -653,6 +653,49 @@ pairs(dat[,c(2,5,6)])
 
 ![plot of chunk Data Analysis pairs plot](figures/Rplot03.png)
 
+### Generating Nicer plots
+
+Plotting a single numeric variable goes down the rows and plots a value on the y-axis for each observation (index) in the data frame.
+
+
+```{r}
+plot(mtcars$mpg)
+```
+
+This isn't a very useful figure. More appropriate might be a histogram. We can try to let R decide how many breaks to insert in the histogram, or we can set that manually. We can also set colors of the bars.
+
+
+
+```{r}
+hist(mtcars$mpg)
+hist(mtcars$mpg, breaks = 10)
+hist(mtcars$mpg, breaks = 10, col = "black")
+```
+
+We can create a scatterplot between two variables with `plot(varX, varY)`.
+
+
+```{r}
+# This would also work, but let's use with().  plot(mtcars$disp, mtcars$mpg)
+with(mtcars, plot(disp, mpg))
+```
+
+There are hundreds of plotting parameters you can use to make your plot look exactly like you want. Let's use a solid-filled point instead of an open circle with the `pch=` argument, and change the x and y axis titles with the `xlab=` and `ylab=` arguments, respectively. Let's go through this one step at a time.
+
+
+```{r}
+with(mtcars, plot(disp, mpg, pch = 16))
+with(mtcars, plot(disp, mpg, pch = 16, col = "red"))
+with(mtcars, plot(disp, mpg, pch = 16, col = "red", main = "MPG vs Displacement"))
+with(mtcars, plot(disp, mpg, pch = 16, col = "red", main = "MPG vs Displacement",
+    ylab = "Fuel Economy (MPG)", xlab = "Displacement (cu. in.)"))
+```
+
+Notice how on that last line I broke the command up into two lines for better readability. I broke the command at the comma separating arguments, and indented the following line for readability.
+
+On your own, try plotting horsepower vs displacement for vehicles with more than 4 cylinders. Give the graph a title and label the axes. Make the points solid (hint, `pch=16`) blue$(hint, `col="blue"`) circles.
+
+
 
 ## Writing text spreadsheets
 
