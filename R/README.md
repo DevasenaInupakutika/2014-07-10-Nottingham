@@ -17,7 +17,12 @@
 - `ggplot2`
 - `lattice`
 
-## 5. Resources
+## 5. [Challenges] (Challenges.md)
+- Looping exercise
+- Plotting exercise
+- Functions exercise
+
+## 6. Resources
 
 ### Manuals
 - [R manuals](http://cran.r-project.org/manuals.html)
