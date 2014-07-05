@@ -12,14 +12,13 @@
 - Exercise
 - Benchmarking
 
-## 4. [Visualisation](Rviz.md)
+## 4. [Visualization](Rviz.md)
 - Base graphics
 - `ggplot2`
 - `lattice`
 
 ## 5. [Challenges] (Challenges.md)
-- Looping exercise
-- Plotting exercise
+- Looping and Plotting exercise
 - Functions exercise
 
 ## 6. Resources
