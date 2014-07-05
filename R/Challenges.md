@@ -4,6 +4,8 @@
 
 Look up the help for the function **sum**. Add up all the numbers from 1 to 100 in two different ways: using **for** and using **sum**.
 
+[Solution] (sum_sol.md)
+
 #### Ex2:
 
 Download Biological Sequences Retrieval and Analysis package called `seqinr` using `install.packages("seqinr")`.
