@@ -308,6 +308,14 @@ The file is in so called Debian-control-file format, which was invented by the D
 
 with the keyword always starting in the first column, continuation lines start with one ore more space characters. The Package, Version, License, Description, Title, Author, and Maintainer fields are mandatory, the remaining fields (Date, Suggests, ...) are optional.The Package and Version fields give the name and the version of the package, respectively. The name should consist of letters, numbers, and the dot character and start with a letter. The version is a sequence of at least two (and usually three) non-negative integers separated by single dots or dashes.The Title should be no more than 65 characters, because it will be used in various package listings with one line per package. The Author field can contain any number of authors in free text format, the Maintainer field should contain only one name plus a valid email address (similar to the “corresponding author” of a paper). The Description field can be of arbitrary length. The Suggests field in our example means that some code in our package uses functionality from package MASS, in our case we will use the cats data in the example section of help pages. A stronger form of dependency can be specified in the optional Depends field listing packages which are necessary to run our code.The License can be free text, if you submit the package to CRAN or Bioconductor and use a standard license, we strongly prefer that you use a standardised abbreviation like GPL-2 which stands for “GNU General Public License Version 2”. A list of license abbreviations R understands is given in the manual “Writing R Extensions” (R Development Core Team 2008b). The manual also contains the full documentation for all possible fields in package DESCRIPTION files. The above is only a minimal example, much more meta-information about a package as well as technical details for package installation can be stated.
 
-
+<script type="text/javascript" 
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script type="text/javascript">MathJax.Hub.Config({tex2jax: {processEscapes: true, 
+        processEnvironments: false, inlineMath: [ ['$','$'] ], 
+        displayMath: [ ['$$','$$'] ] }, 
+        asciimath2jax: {delimiters: [ ['$','$'] ] }, 
+        "HTML-CSS": {minScaleAdjust: 125 } });
+    </script>
 
 
