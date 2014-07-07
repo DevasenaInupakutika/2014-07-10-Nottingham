@@ -531,7 +531,7 @@ vectorised functions.
 > 
 ```
 
-### A example with `switch`
+### An example with `switch`
 
 
 ```{r}
