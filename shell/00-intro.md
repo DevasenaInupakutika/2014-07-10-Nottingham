@@ -139,5 +139,5 @@ being able to drive them is becoming a necessary skill.
 #### Concept Map
 
 
-![concept map for shell intro](img/00-intro.gv.svg)
+[[img src="img/00-intro.gv.svg" alt="Intro Concept Map"]]
 
