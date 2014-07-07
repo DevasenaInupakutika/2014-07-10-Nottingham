@@ -139,5 +139,4 @@ being able to drive them is becoming a necessary skill.
 #### Concept Map
 
 
-[[img src="img/00-intro.gv.svg" alt="Intro Concept Map"]]
-
+<img src="img/00-intro.gv.svg" alt="Intro Concept Map">
