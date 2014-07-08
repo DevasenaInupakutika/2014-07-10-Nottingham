@@ -35,7 +35,7 @@ plot(1:10, type = "h", main = "histogram")
 ![plot of chunk Rviz.md-2] (figures/Rplot08.png)
 
 
-- `barbplot`
+- `barplot`
 
 
 ```{r}
