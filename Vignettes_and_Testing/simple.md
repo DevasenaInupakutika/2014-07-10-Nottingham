@@ -127,6 +127,8 @@ of throwing darts at a dartboard.
 
 [Estimating PI](http://www.damtp.cam.ac.uk/user/eglen/rguide/estimate.pdf)
 
+The Sweave version of file is present [here](Additional_R_guide/estimate.Rnw).
+
 Can you generate something similar with an .Rmd document?  Work on the
 basics of estimating pi and attempt the last figure only if you have
 time.
