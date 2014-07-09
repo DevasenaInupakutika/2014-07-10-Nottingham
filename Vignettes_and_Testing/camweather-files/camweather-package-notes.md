@@ -91,11 +91,11 @@ invalid date could be regarded as any date not in the database.)
 
   
 
-# SJE Notes
+# Notes
 
 ## Creating the Data file
 
-Notes for SJE:
+Notes for me:
 
 The Rda file is 1Mb rather than 16Mb raw.
 
