@@ -5,9 +5,14 @@ of the weather-raw.csv file.  See how the .rda file was created below.
 
 You should be able to test the weather file using:
 
+```{r}
 	load("camweatherraw.rda")
 	head(camweatherraw)
+        source(camtemp.R)
+```
+       
 
+**Note:** Load all data files you need and source all the functions you require for creating your own package prior to creating one. 
 
 # Create the skeleton from the camtemp definition.
 
