@@ -64,7 +64,8 @@ package gallery for more advanced examples.
 
 
 ```r
-kable(head(iris[, 1:3]), format = "html")
+library("xtable")
+xtable(head(iris[, 1:3]), format = "html")
 ```
 
 <table>
