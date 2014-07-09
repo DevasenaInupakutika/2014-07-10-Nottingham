@@ -22,13 +22,13 @@ contact: admin@software-carpentry.org, gavin.thomas@sheffield.ac.uk, Adam.Algar@
     This block includes the Eventbrite registration widget if 'eventbrite' has been set in the header.
 -->
 {% if page.eventbrite %}
-<iframe src="http://www.eventbrite.com/tickets-external?eid={{page.eventbrite}}&ref=etckt" frameborder="0" width="100%" scrolling="auto"></iframe>
+<iframe src="//www.eventbrite.com/tickets-external?eid={{page.eventbrite}}&ref=etckt" frameborder="0" width="100%" scrolling="auto"></iframe>
 {% endif %}
 
 <h2>General Information</h2>
 
 <p>
-  <a href="http://software-carpentry.org">Software Carpentry</a>'s mission
+  <a href="//software-carpentry.org">Software Carpentry</a>'s mission
   is to help scientists and engineers become more productive
   by teaching them basic lab skills for computing
   like program design, version control, data management, and task automation.
@@ -42,6 +42,14 @@ contact: admin@software-carpentry.org, gavin.thomas@sheffield.ac.uk, Adam.Algar@
 <p>
   <strong>Instructors:</strong>
   {{page.instructor | join: ', ' %}}
+</p>
+{% endif %}
+
+<!-- This block displays the helpers' names if they are available. -->
+{% if page.helper %}
+<p>
+  <strong>Helpers:</strong>
+  {{page.helper | join: ', ' %}}
 </p>
 {% endif %}
 
@@ -63,9 +71,9 @@ contact: admin@software-carpentry.org, gavin.thomas@sheffield.ac.uk, Adam.Algar@
   <strong>Where:</strong>
   {{ page.address }}.
   Get directions with
-  <a href="http://www.openstreetmap.org/?mlat={{ page.latlng | replace:',','&mlon=' }}&zoom=16">OpenStreetMap</a>
+  <a href="//www.openstreetmap.org/?mlat={{ page.latlng | replace:',','&mlon=' }}&zoom=16">OpenStreetMap</a>
   or
-  <a href="http://maps.google.com/maps?q={{ page.latlng }}">Google Maps</a>.
+  <a href="//maps.google.com/maps?q={{ page.latlng }}">Google Maps</a>.
 </p>
 {% endif %}
 
@@ -96,7 +104,7 @@ contact: admin@software-carpentry.org, gavin.thomas@sheffield.ac.uk, Adam.Algar@
 <hr/>
 
 <!--
-    Edit this block to show the syllabus and schedule for your bootcamp.
+    Edit this block to show the schedule for your bootcamp.
 -->
 
 <h2> Meeting Room </h2>
@@ -126,7 +134,6 @@ contact: admin@software-carpentry.org, gavin.thomas@sheffield.ac.uk, Adam.Algar@
   <tr> <td></td>        <td>15:45-16:30</td><td>Putting it all together</td> </tr>
   <tr> <td></td>        <td>16:30</td>     <td>Wrap-up</td> </tr>
 </table>
-
 <hr/>
 
 <h2>Materials</h2>
