@@ -7,7 +7,6 @@ Don't forget to install knitr package.
 install.packages(c("knitr"))
 ```
 
-
 # Introduction
 
 This is an .Rmd document.  Maybe you have heard of Sweave?
@@ -38,7 +37,6 @@ outer(x, y)
 ## [2,]    8   10   12
 ## [3,]   12   15   18
 ```
-
 As well as having chunks in separate paragaphs, you can have some
 inline computation.  For example, the mean of x is 2 and
 the sum of x and y is 5, 7, 9.  Chunks can be named and then
@@ -48,13 +46,12 @@ referred to later.
 
 
 ```r
-x <- seq(from = 0, to = 2 * pi, length = 1000)
-y <- cos(3 * x)
-plot(x, y, type = "l", col = "blue")
+x <- seq(from=0, to=2*pi, length=1000)
+y <- cos(3*x)
+plot(x, y, type='l', col='blue')
 ```
 
 ![plot of chunk plot-chunk](figure/plot-chunk.png) 
-
 
 ## Tables are not so straightforward (in markdown)
 
@@ -65,51 +62,26 @@ package gallery for more advanced examples.
 
 ```r
 library("xtable")
-xtable(head(iris[, 1:3]), format = "html")
+xtable(head(iris[,1:3]), format='html')
 ```
 
-<table>
- <thead>
-  <tr>
-   <th> Sepal.Length </th>
-   <th> Sepal.Width </th>
-   <th> Petal.Length </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td> 5.1 </td>
-   <td> 3.5 </td>
-   <td> 1.4 </td>
-  </tr>
-  <tr>
-   <td> 4.9 </td>
-   <td> 3.0 </td>
-   <td> 1.4 </td>
-  </tr>
-  <tr>
-   <td> 4.7 </td>
-   <td> 3.2 </td>
-   <td> 1.3 </td>
-  </tr>
-  <tr>
-   <td> 4.6 </td>
-   <td> 3.1 </td>
-   <td> 1.5 </td>
-  </tr>
-  <tr>
-   <td> 5.0 </td>
-   <td> 3.6 </td>
-   <td> 1.4 </td>
-  </tr>
-  <tr>
-   <td> 5.4 </td>
-   <td> 3.9 </td>
-   <td> 1.7 </td>
-  </tr>
-</tbody>
-</table>
-
+% latex table generated in R 3.1.0 by xtable 1.7-3 package
+% Fri Jul 11 00:27:26 2014
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrr}
+  \hline
+ & Sepal.Length & Sepal.Width & Petal.Length \\ 
+  \hline
+1 & 5.10 & 3.50 & 1.40 \\ 
+  2 & 4.90 & 3.00 & 1.40 \\ 
+  3 & 4.70 & 3.20 & 1.30 \\ 
+  4 & 4.60 & 3.10 & 1.50 \\ 
+  5 & 5.00 & 3.60 & 1.40 \\ 
+  6 & 5.40 & 3.90 & 1.70 \\ 
+   \hline
+\end{tabular}
+\end{table}
 
 
 # Okay, what do you need to know?
@@ -147,13 +119,12 @@ e.g.  for markdown, see the file
 
 
 ```r
-system.file("doc", "knitr-markdown.Rmd", package = "knitr")
+system.file('doc', 'knitr-markdown.Rmd', package='knitr')
 ```
 
 ```
-## [1] "/Library/Frameworks/R.framework/Versions/3.0/Resources/library/knitr/doc/knitr-markdown.Rmd"
+## [1] "/Library/Frameworks/R.framework/Versions/3.1/Resources/library/knitr/doc/knitr-markdown.Rmd"
 ```
-
 
 
 # How to compile this document
@@ -169,7 +140,6 @@ knit2html("simple.Rmd")
 if (interactive()) browseURL("simple.html")
 ```
 
-
 In R studio, it is even simpler; just hit the special "Knit HTML" button!
 
 If you prefer the pdf format you need to have a latex compiler, so the
@@ -178,11 +148,9 @@ following may not work for you (especially on Windows):
 
 ```r
 require(knitr)
-knit2html("simple.Rmd")
-browseURL("simple.html")
+knit2html('simple.Rmd'); browseURL('simple.html')
 knit2pdf("simple.Rmd")
 ```
-
 
 ## About this document
 
@@ -192,7 +160,7 @@ sessionInfo()
 ```
 
 ```
-## R version 3.0.2 (2013-09-25)
+## R version 3.1.0 (2014-04-10)
 ## Platform: x86_64-apple-darwin10.8.0 (64-bit)
 ## 
 ## locale:
@@ -202,9 +170,8 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  base     
 ## 
 ## other attached packages:
-## [1] knitr_1.5
+## [1] xtable_1.7-3 knitr_1.6   
 ## 
 ## loaded via a namespace (and not attached):
-## [1] evaluate_0.5.1 formatR_0.10   stringr_0.6.2  tools_3.0.2
+## [1] evaluate_0.5.5 formatR_0.10   stringr_0.6.2  tools_3.1.0
 ```
-
