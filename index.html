@@ -4,14 +4,15 @@ root: .
 venue: The University of Nottingham
 address: University Park, NG7 2RD, Nottingham
 country: United-Kingdom
-humandate: July 10-11, 2014
+humandate: Jul 10-11, 2014
 humantime: 9:00 am - 4:30 pm
 startdate: 2014-07-10
 enddate: 2014-07-11
 latlng: 52.938636,-1.195158
 registration: restricted
 instructor: ["Aur Saraf", "Devasena Inupakutika"]
-contact: admin@software-carpentry.org, gavin.thomas@sheffield.ac.uk, Adam.Algar@nottingham.ac.uk
+helper: []
+contact: gavin.thomas@sheffield.ac.uk
 ---
 <!--
     Edit the values in the parameter block above to be appropriate for your bootcamp.
@@ -42,14 +43,6 @@ contact: admin@software-carpentry.org, gavin.thomas@sheffield.ac.uk, Adam.Algar@
 <p>
   <strong>Instructors:</strong>
   {{page.instructor | join: ', ' %}}
-</p>
-{% endif %}
-
-<!-- This block displays the helpers' names if they are available. -->
-{% if page.helper %}
-<p>
-  <strong>Helpers:</strong>
-  {{page.helper | join: ', ' %}}
 </p>
 {% endif %}
 
