@@ -1,0 +1,89 @@
+Hello and welcome to the Etherpad for the Software Carpentry bootcamp at University of Nottingham July 2014                                    
+                                    
+Please  enter your name on the right-hand side (next to the coloured square).  Feel free to add comments and ask questions in the notepad area below  (please try not to overwrite what others have put in).
+You can also use the chat on the right hand-side.
+
+And if you are on Twitter,  you can find us  @swcarpentry
+
+If you feel, you already know the topics that we teach, feel free to follow the materials to more advanced stuff. Some of your colleagues may be less advanced andthe Software Carpentry goal is to help them as they really may struggle.
+
+Bootcamp webpage: http://devasenainupakutika.github.io/2014-07-10-Nottingham/
+
+Materials: https://github.com/DevasenaInupakutika/2014-07-10-Nottingham
+
+http://sonoflilit.github.io/2014-07-10-Nottingham/novice/shell/
+http://sonoflilit.github.io/2014-07-10-Nottingham/novice/git/
+
+If you face any issues installing softwares, please email us at:
+
+Name: Devasena
+Email id: d.inupakutika@software.ac.uk
+
+
+Virtual Machine Image --> Ubuntu machine details:
+Username : swc
+Password: swc
+
+For participants using Virtual Machine, please follow below commands once you login:
+
+To shorten the prompt:
+
+open bash_profile using below command:
+
+nano ~/.bash_profile
+
+Append below command in bash_profile:
+
+export PS1 = "$"
+
+Now enter below command:
+
+source .bash_profile
+
+All participants, please download shell lesson material using these commands:
+
+git clone https://github.com/SonOfLilit/2014-07-10-shell.git
+cd 2014-07-10-shell/filesystem/users/vlad
+
+* You can use "tab completion" i.e. pressing tab in order fill file names. You don't have to remember complete file names.
+
+Wildcards --> For finding files or directories with "certain specified" pattern of "letters or characters"
+
+https://github.com/DevasenaInupakutika/2014-07-10-Nottingham/blob/master/R/Basics_Introduction_R.md
+
+
+
+Please register for a github account, if you don't yet have one: https://github.com/
+
+
+$ git config --global user.name "Vlad Dracula"
+$ git config --global user.email "vlad@tran.sylvan.ia"
+$ git config --global color.ui "auto"
+$ git config --global core.editor "nano"
+
+
+
+
+Green: Found time for a break soon after lunch arrived
+Red: Typed too fast, using shortcuts, so students couldn't follow what I was doing
+
+
+Green: Good use of the concept maps to explain how it all works
+Red: 
+
+Red: could explain the distinction between git diff and git diff --staged more clearly
+Green: Generally very logical explaination of how git works , builds well on yesterdays class
+
+
+
+Please fill-in feedback form post bootcamp course at the below link:
+
+https://docs.google.com/forms/d/15x-cCcvNl-qppYR9ABhE89jp7veVEvfgyeVJVBXscfM/viewform
+
+
+
+github pages
+
+
+http://sonoflilit.github.io/2014-07-10-Nottingham/novice/r/05-testing-R.md
+
